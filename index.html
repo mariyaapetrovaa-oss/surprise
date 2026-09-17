@@ -13,9 +13,9 @@
 
   <style>
 
-    /* =========================
+    /* =========================================
        BASIC PAGE
-       ========================= */
+       ========================================= */
 
     * {
       box-sizing: border-box;
@@ -29,21 +29,40 @@
     }
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      overflow: hidden;
-
       background: #111;
-
+      overflow: hidden;
       font-family: Arial, Helvetica, sans-serif;
     }
 
 
-    /* =========================
-       INVITATION
-       ========================= */
+    /* =========================================
+       ALL SCREENS
+       ========================================= */
+
+    .screen {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+
+    /* =========================================
+       PAGE 1 — ORIGINAL INVITATION
+       ========================================= */
+
+    #page1 {
+      background: #111;
+    }
 
     .invite {
       position: relative;
@@ -54,11 +73,6 @@
 
       overflow: hidden;
     }
-
-
-    /* =========================
-       YOUR PAGE1.PNG
-       ========================= */
 
     .background {
       position: absolute;
@@ -75,14 +89,13 @@
 
       z-index: 1;
 
-      /* Image cannot block button clicks */
       pointer-events: none;
     }
 
 
-    /* =========================
-       CLICKABLE AREAS
-       ========================= */
+    /* =========================================
+       PAGE 1 CLICK AREAS
+       ========================================= */
 
     .click-zone {
       position: absolute;
@@ -93,69 +106,50 @@
       margin: 0;
 
       border: none;
+      background: transparent;
 
       cursor: pointer;
 
       pointer-events: auto;
 
-      /* Hide actual button text */
       color: transparent;
       font-size: 0;
     }
 
 
-    /* =========================
-       YES CLICK AREA
-       ========================= */
+    /* YES */
 
-    #yes {
+    #yes-main {
       left: 5%;
       top: 69%;
 
       width: 22%;
       height: 15%;
-
-      /*
-        TEMPORARILY RED
-        so we can see the click area.
-      */
-
-      background:
-        rgba(255, 0, 0, 0.40);
     }
 
 
-    /* =========================
-       NO CLICK AREA
-       ========================= */
+    /* NO */
 
-    #no {
+    #no-main {
       left: 27%;
       top: 71%;
 
       width: 15%;
       height: 13%;
-
-      /*
-        TEMPORARILY BLUE
-        so we can see the click area.
-      */
-
-      background:
-        rgba(0, 0, 255, 0.40);
     }
 
 
-    /* =========================
-       FALLING CONFETTI
-       ========================= */
+
+    /* =========================================
+       CONFETTI
+       ========================================= */
 
     .confetti-piece {
       position: absolute;
 
       top: -8%;
 
-      z-index: 50;
+      z-index: 500;
 
       pointer-events: none;
 
@@ -216,9 +210,203 @@
     }
 
 
-    /* =========================
+
+    /* =========================================
+       PAGE 2 — HAMSTER
+       ========================================= */
+
+    #page2 {
+      background: #000;
+    }
+
+
+    .threat-container {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+
+    .threat-video {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      background: #000;
+
+      z-index: 1;
+    }
+
+
+    /* BIG TEXT */
+
+    .threat-title {
+      position: absolute;
+
+      top: 5%;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      z-index: 20;
+
+      margin: 0;
+
+      padding: 15px 30px;
+
+      background: #ef7eae;
+
+      color: white;
+
+      font-size: clamp(38px, 6vw, 90px);
+
+      font-weight: 900;
+
+      text-align: center;
+
+      white-space: nowrap;
+
+      line-height: 1;
+
+      box-shadow: 8px 8px 0 white;
+    }
+
+
+    /* ONLY POSSIBLE ANSWER */
+
+    #yes-threat {
+      position: absolute;
+
+      left: 50%;
+      bottom: 8%;
+
+      transform: translateX(-50%);
+
+      z-index: 9999;
+
+      border: 8px solid #ef7eae;
+
+      background: white;
+
+      color: #ef7eae;
+
+      padding: 18px 55px;
+
+      font-size: clamp(35px, 5vw, 75px);
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      box-shadow: 10px 10px 0 #ef7eae;
+
+      transition:
+        transform 0.15s ease;
+    }
+
+
+    #yes-threat:hover {
+      transform:
+        translateX(-50%)
+        scale(1.12);
+    }
+
+
+
+    /* =========================================
+       PAGE 3 — HAPPY CAT
+       ========================================= */
+
+    #page3 {
+      background: #ef7eae;
+    }
+
+
+    .celebration-container {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+
+    .happy-video {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      background: #ef7eae;
+
+      z-index: 1;
+    }
+
+
+    /* CELEBRATION TEXT */
+
+    .celebration-title {
+      position: absolute;
+
+      top: 4%;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      z-index: 1000;
+
+      margin: 0;
+
+      width: 90%;
+
+      color: white;
+
+      font-size: clamp(36px, 6vw, 90px);
+
+      font-weight: 900;
+
+      line-height: 0.95;
+
+      text-align: center;
+
+      text-shadow:
+        5px 5px 0 #ef7eae,
+        -3px -3px 0 #ef7eae,
+        3px -3px 0 #ef7eae,
+        -3px 3px 0 #ef7eae;
+    }
+
+
+    .celebration-title span {
+      display: block;
+    }
+
+
+
+    /* =========================================
        MOBILE
-       ========================= */
+       ========================================= */
 
     @media (max-width: 600px) {
 
@@ -229,64 +417,226 @@
         );
       }
 
+
+      .threat-title {
+        top: 4%;
+
+        width: 90%;
+
+        white-space: normal;
+
+        font-size: 11vw;
+
+        padding: 12px;
+      }
+
+
+      #yes-threat {
+        bottom: 8%;
+
+        font-size: 11vw;
+
+        padding: 12px 35px;
+      }
+
+
+      .celebration-title {
+        top: 5%;
+
+        font-size: 10vw;
+      }
+
     }
+
 
   </style>
 
 </head>
 
 
+
 <body>
 
 
-  <main class="invite">
+  <!-- =====================================
+       PAGE 1
+       ===================================== -->
+
+  <section
+    id="page1"
+    class="screen active"
+  >
 
 
-    <!-- YOUR COMPLETE DESIGN -->
-
-    <img
-      src="page1.png"
-      class="background"
-      alt="Pub invitation"
-    >
+    <div class="invite">
 
 
-    <!-- YES CLICK ZONE -->
-
-    <button
-      type="button"
-      id="yes"
-      class="click-zone"
-      aria-label="Yes"
-    >
-      YES
-    </button>
+      <img
+        src="page1.png"
+        class="background"
+        alt="Pub invitation"
+      >
 
 
-    <!-- NO CLICK ZONE -->
+      <!-- INVISIBLE YES -->
 
-    <button
-      type="button"
-      id="no"
-      class="click-zone"
-      aria-label="No"
-    >
-      NO
-    </button>
+      <button
+        type="button"
+        id="yes-main"
+        class="click-zone"
+        aria-label="Yes"
+      >
+        YES
+      </button>
 
 
-  </main>
+      <!-- INVISIBLE NO -->
+
+      <button
+        type="button"
+        id="no-main"
+        class="click-zone"
+        aria-label="No"
+      >
+        NO
+      </button>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================================
+       PAGE 2
+       HAMSTER
+       ===================================== -->
+
+  <section
+    id="page2"
+    class="screen"
+  >
+
+
+    <div class="threat-container">
+
+
+      <video
+        id="hamster-video"
+        class="threat-video"
+        src="hamster.mov"
+        playsinline
+        loop
+      ></video>
+
+
+      <h1 class="threat-title">
+        PUB ON THURSDAY?
+      </h1>
+
+
+      <!-- THERE IS DELIBERATELY
+           NO "NO" BUTTON 😂 -->
+
+      <button
+        type="button"
+        id="yes-threat"
+      >
+        YES!!!
+      </button>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================================
+       PAGE 3
+       HAPPY CAT
+       ===================================== -->
+
+  <section
+    id="page3"
+    class="screen"
+  >
+
+
+    <div class="celebration-container">
+
+
+      <video
+        id="happy-video"
+        class="happy-video"
+        src="happycat.mov"
+        playsinline
+        loop
+      ></video>
+
+
+      <h1 class="celebration-title">
+
+        <span>
+          YAYYYYY
+        </span>
+
+        <span>
+          SEE YOU ON THURSDAY!!! 🍻
+        </span>
+
+      </h1>
+
+
+    </div>
+
+
+  </section>
+
 
 
   <script>
 
 
-    /* =========================
-       CONFETTI
-       ========================= */
+    /* =====================================
+       GET EVERYTHING
+       ===================================== */
 
-    const invite =
-      document.querySelector(".invite");
+
+    const page1 =
+      document.getElementById("page1");
+
+    const page2 =
+      document.getElementById("page2");
+
+    const page3 =
+      document.getElementById("page3");
+
+
+    const yesMain =
+      document.getElementById("yes-main");
+
+    const noMain =
+      document.getElementById("no-main");
+
+    const yesThreat =
+      document.getElementById("yes-threat");
+
+
+    const hamsterVideo =
+      document.getElementById("hamster-video");
+
+    const happyVideo =
+      document.getElementById("happy-video");
+
+
+
+    /* =====================================
+       CONFETTI COLOURS
+       ===================================== */
 
 
     const confettiColours = [
@@ -300,23 +650,30 @@
     ];
 
 
-    function createConfetti() {
+
+    /* =====================================
+       CREATE ONE CONFETTI PIECE
+       ===================================== */
+
+
+    function createConfetti(
+      container,
+      celebration = false
+    ) {
+
 
       const piece =
         document.createElement("div");
+
 
       piece.classList.add(
         "confetti-piece"
       );
 
 
-      /* RANDOM POSITION */
-
       piece.style.left =
         Math.random() * 100 + "%";
 
-
-      /* RANDOM COLOUR */
 
       piece.style.backgroundColor =
         confettiColours[
@@ -327,28 +684,42 @@
         ];
 
 
-      /* RANDOM SIZE */
+      /*
+        Celebration screen gets
+        slightly bigger confetti.
+      */
 
       const size =
-        Math.random() * 8 + 5;
+        celebration
+          ? Math.random() * 11 + 6
+          : Math.random() * 8 + 5;
+
 
       piece.style.width =
         size + "px";
 
+
       piece.style.height =
-        (size * 1.7) + "px";
+        size * 1.7 + "px";
 
 
-      /* RANDOM SPEED */
+      /*
+        Random falling speed
+      */
 
       const duration =
-        Math.random() * 3 + 3.5;
+        celebration
+          ? Math.random() * 2 + 2.5
+          : Math.random() * 3 + 3.5;
+
 
       piece.style.animationDuration =
         duration + "s";
 
 
-      /* RANDOM SHAPE */
+      /*
+        Random shape
+      */
 
       if (Math.random() > 0.8) {
 
@@ -363,39 +734,67 @@
       }
 
 
-      invite.appendChild(piece);
+      container.appendChild(piece);
 
-
-      /* REMOVE AFTER FALLING */
 
       setTimeout(
         function () {
+
           piece.remove();
+
         },
         7000
       );
 
+
     }
 
 
-    /*
-       Lots of continuous confetti
-    */
+
+    /* =====================================
+       NORMAL PAGE 1 CONFETTI
+       ===================================== */
+
 
     setInterval(
-      createConfetti,
+      function () {
+
+        if (
+          page1.classList.contains("active")
+        ) {
+
+          createConfetti(
+            page1,
+            false
+          );
+
+        }
+
+      },
       100
     );
 
 
+
     /*
-       Initial burst when page opens
+       Confetti immediately on opening
     */
 
-    for (let i = 0; i < 40; i++) {
+    for (
+      let i = 0;
+      i < 40;
+      i++
+    ) {
 
       setTimeout(
-        createConfetti,
+        function () {
+
+          createConfetti(
+            page1,
+            false
+          );
+
+        },
         Math.random() * 1200
       );
 
@@ -403,42 +802,212 @@
 
 
 
-    /* =========================
-       YES BUTTON TEST
-       ========================= */
-
-    const yesButton =
-      document.getElementById("yes");
+    /* =====================================
+       SHOW HAMSTER PAGE
+       ===================================== */
 
 
-    yesButton.addEventListener(
+    function showHamster() {
+
+
+      page1.classList.remove(
+        "active"
+      );
+
+      page3.classList.remove(
+        "active"
+      );
+
+      page2.classList.add(
+        "active"
+      );
+
+
+      /*
+        Start hamster video.
+
+        Because the person clicked NO,
+        browsers should allow playback.
+      */
+
+      hamsterVideo.currentTime = 0;
+
+      hamsterVideo.muted = false;
+
+      hamsterVideo.play().catch(
+        function () {
+
+          /*
+            If browser blocks sound,
+            try playing muted instead.
+          */
+
+          hamsterVideo.muted = true;
+
+          hamsterVideo.play();
+
+        }
+      );
+
+
+    }
+
+
+
+    /* =====================================
+       SHOW HAPPY CAT
+       ===================================== */
+
+
+    function showCelebration() {
+
+
+      page1.classList.remove(
+        "active"
+      );
+
+      page2.classList.remove(
+        "active"
+      );
+
+      page3.classList.add(
+        "active"
+      );
+
+
+      /*
+        Stop hamster video
+      */
+
+      hamsterVideo.pause();
+
+
+      /*
+        Start happy cat FROM THE START
+        WITH SOUND.
+      */
+
+      happyVideo.currentTime = 0;
+
+      happyVideo.muted = false;
+
+
+      happyVideo.play().catch(
+        function () {
+
+          /*
+            Browser fallback if it
+            refuses audio playback.
+          */
+
+          happyVideo.muted = true;
+
+          happyVideo.play();
+
+        }
+      );
+
+
+
+      /*
+        MASSIVE INITIAL CONFETTI BURST
+      */
+
+      for (
+        let i = 0;
+        i < 120;
+        i++
+      ) {
+
+        setTimeout(
+          function () {
+
+            createConfetti(
+              page3,
+              true
+            );
+
+          },
+          Math.random() * 1500
+        );
+
+      }
+
+
+    }
+
+
+
+    /* =====================================
+       HEAVY CONTINUOUS CELEBRATION
+       CONFETTI
+       ===================================== */
+
+
+    setInterval(
+      function () {
+
+        if (
+          page3.classList.contains(
+            "active"
+          )
+        ) {
+
+          createConfetti(
+            page3,
+            true
+          );
+
+        }
+
+      },
+      55
+    );
+
+
+
+    /* =====================================
+       PAGE 1 YES
+       ===================================== */
+
+
+    yesMain.addEventListener(
       "click",
       function () {
 
-        alert(
-          "CORRECT ANSWER 🎉"
-        );
+        showCelebration();
 
       }
     );
 
 
 
-    /* =========================
-       NO BUTTON TEST
-       ========================= */
-
-    const noButton =
-      document.getElementById("no");
+    /* =====================================
+       PAGE 1 NO
+       ===================================== */
 
 
-    noButton.addEventListener(
+    noMain.addEventListener(
       "click",
       function () {
 
-        alert(
-          "wrong answer."
-        );
+        showHamster();
+
+      }
+    );
+
+
+
+    /* =====================================
+       HAMSTER YES
+       ===================================== */
+
+
+    yesThreat.addEventListener(
+      "click",
+      function () {
+
+        showCelebration();
 
       }
     );
