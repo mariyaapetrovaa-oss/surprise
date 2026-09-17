@@ -9,7 +9,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>important question</title>
+  <title>Pub on Friday?</title>
 
   <style>
 
@@ -36,7 +36,7 @@
 
 
     /* =========================================
-       SCREENS
+       ALL SCREENS
        ========================================= */
 
     .screen {
@@ -115,10 +115,8 @@
 
 
     /*
-       KEEP THESE EXACTLY AS THEY ARE.
-
        These are the coordinates we already
-       confirmed work with page1.png.
+       confirmed work with your Page 1.
     */
 
     #yes-main {
@@ -189,24 +187,13 @@
 
 
     /* =========================================
-       PAGE 2
-       HAMSTER
+       PAGE 2 — HAMSTER
        ========================================= */
 
     #page2 {
       background: #000;
     }
 
-
-    /*
-       This is now a vertical layout.
-
-       Video gets its own area.
-       YES gets its own area.
-
-       Therefore YES CANNOT cover
-       the hamster anymore.
-    */
 
     .threat-container {
       position: relative;
@@ -302,9 +289,10 @@
 
 
     /* =========================================
-       HAMSTER YES BAR
+       HAMSTER YES SECTION
 
-       COMPLETELY SEPARATE FROM VIDEO
+       This is completely outside the video,
+       so it cannot cover the hamster.
        ========================================= */
 
     .threat-controls {
@@ -358,8 +346,7 @@
 
 
     /* =========================================
-       PAGE 3
-       HAPPY CAT
+       PAGE 3 — HAPPY CAT
        ========================================= */
 
     #page3 {
@@ -439,10 +426,6 @@
     }
 
 
-    /*
-       YAYYYYY can stay huge.
-    */
-
     .yay-line {
       display: block;
 
@@ -451,12 +434,7 @@
     }
 
 
-    /*
-       Smaller second line so the entire
-       sentence fits on the screen.
-    */
-
-    .thursday-line {
+    .friday-line {
       display: block;
 
       margin-top: 6px;
@@ -518,7 +496,7 @@
       }
 
 
-      .thursday-line {
+      .friday-line {
         font-size: 6.5vw;
 
         white-space: normal;
@@ -537,7 +515,7 @@
 
 
   <!-- =====================================
-       PAGE 1
+       PAGE 1 — FRIDAY INVITATION
        ===================================== -->
 
   <section
@@ -547,10 +525,16 @@
 
     <div class="invite">
 
+      <!--
+        ?v=friday forces the browser to fetch
+        the NEW page1.png instead of using
+        the old cached Thursday image.
+      -->
+
       <img
-        src="page1.png"
+        src="page1.png?v=friday"
         class="background"
-        alt="Pub invitation"
+        alt="Shall we go to the pub this Friday?"
       >
 
 
@@ -580,8 +564,7 @@
 
 
   <!-- =====================================
-       PAGE 2
-       HAMSTER
+       PAGE 2 — HAMSTER
        ===================================== -->
 
   <section
@@ -591,8 +574,6 @@
 
     <div class="threat-container">
 
-
-      <!-- VIDEO HAS ITS OWN AREA -->
 
       <div class="threat-video-area">
 
@@ -607,16 +588,14 @@
 
 
         <h1 class="threat-title">
-          PUB ON THURSDAY?
+          PUB ON FRIDAY?
         </h1>
 
       </div>
 
 
       <!--
-        YES IS OUTSIDE THE VIDEO AREA.
-
-        It cannot cover the hamster.
+        The ONLY possible answer 😂
       -->
 
       <div class="threat-controls">
@@ -638,8 +617,7 @@
 
 
   <!-- =====================================
-       PAGE 3
-       HAPPY CAT
+       PAGE 3 — HAPPY CAT
        ===================================== -->
 
   <section
@@ -666,19 +644,11 @@
           YAYYYYY
         </span>
 
-        <span class="thursday-line">
-          SEE YOU ON THURSDAY!!!
+        <span class="friday-line">
+          SEE YOU ON FRIDAY!!!
         </span>
 
       </h1>
-
-
-      <!--
-        NO HTML BEER EMOJI.
-
-        Nothing here can cover
-        the cat's head.
-      -->
 
 
     </div>
@@ -731,7 +701,7 @@
     /* =====================================
        VIDEO VOLUME
 
-       18% FOR BOTH
+       BOTH AT 18%
        ===================================== */
 
 
@@ -825,11 +795,6 @@
       container.appendChild(piece);
 
 
-      /*
-        Remove shortly after its
-        animation finishes.
-      */
-
       setTimeout(
         function () {
 
@@ -846,37 +811,33 @@
 
     /* =====================================
        PAGE 1 CONFETTI
-
-       Around 6 pieces per second.
        ===================================== */
 
 
-    const page1Confetti =
-      setInterval(
-        function () {
+    setInterval(
+      function () {
 
-          if (
-            page1.classList.contains(
-              "active"
-            )
-          ) {
+        if (
+          page1.classList.contains(
+            "active"
+          )
+        ) {
 
-            createConfetti(
-              page1,
-              false
-            );
+          createConfetti(
+            page1,
+            false
+          );
 
-          }
+        }
 
-        },
-        165
-      );
+      },
+      165
+    );
 
 
 
     /*
-       Small opening sprinkle,
-       rather than 40 pieces.
+       Small initial sprinkle
     */
 
     for (
@@ -910,7 +871,7 @@
 
 
     /* =====================================
-       HAMSTER SCREEN
+       SHOW HAMSTER
        ===================================== */
 
 
@@ -932,16 +893,8 @@
       );
 
 
-      /*
-        Stop happy video if necessary.
-      */
-
       happyVideo.pause();
 
-
-      /*
-        Start hamster from beginning.
-      */
 
       hamsterVideo.currentTime = 0;
 
@@ -952,11 +905,6 @@
 
       hamsterVideo.play().catch(
         function () {
-
-          /*
-            Fallback if browser
-            refuses audio.
-          */
 
           hamsterVideo.muted = true;
 
@@ -971,7 +919,7 @@
 
 
     /* =====================================
-       CELEBRATION SCREEN
+       SHOW CELEBRATION
        ===================================== */
 
 
@@ -993,16 +941,8 @@
       );
 
 
-      /*
-        Stop hamster.
-      */
-
       hamsterVideo.pause();
 
-
-      /*
-        Happy cat from beginning.
-      */
 
       happyVideo.currentTime = 0;
 
@@ -1023,10 +963,7 @@
 
 
       /*
-        SMALL celebration burst.
-
-        Previously this was 120 pieces.
-        Now only 25.
+        Small celebration burst
       */
 
       for (
@@ -1064,32 +1001,28 @@
 
     /* =====================================
        CELEBRATION CONFETTI
-
-       Around 8 pieces per second
-       instead of ~18.
        ===================================== */
 
 
-    const celebrationConfetti =
-      setInterval(
-        function () {
+    setInterval(
+      function () {
 
-          if (
-            page3.classList.contains(
-              "active"
-            )
-          ) {
+        if (
+          page3.classList.contains(
+            "active"
+          )
+        ) {
 
-            createConfetti(
-              page3,
-              true
-            );
+          createConfetti(
+            page3,
+            true
+          );
 
-          }
+        }
 
-        },
-        125
-      );
+      },
+      125
+    );
 
 
 
