@@ -3,19 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>important question</title>
 
   <style>
-
-    /* =========================================
-       BASIC PAGE
-       ========================================= */
 
     * {
       box-sizing: border-box;
@@ -44,7 +36,6 @@
       inset: 0;
 
       display: none;
-
       justify-content: center;
       align-items: center;
 
@@ -57,7 +48,7 @@
 
 
     /* =========================================
-       PAGE 1 — ORIGINAL INVITATION
+       PAGE 1
        ========================================= */
 
     #page1 {
@@ -68,7 +59,6 @@
       position: relative;
 
       width: min(95vw, calc(92vh * 1.5));
-
       aspect-ratio: 3 / 2;
 
       overflow: hidden;
@@ -109,15 +99,12 @@
       background: transparent;
 
       cursor: pointer;
-
       pointer-events: auto;
 
       color: transparent;
       font-size: 0;
     }
 
-
-    /* YES */
 
     #yes-main {
       left: 5%;
@@ -127,8 +114,6 @@
       height: 15%;
     }
 
-
-    /* NO */
 
     #no-main {
       left: 27%;
@@ -227,7 +212,6 @@
       height: 100%;
 
       display: flex;
-
       justify-content: center;
       align-items: center;
 
@@ -249,13 +233,10 @@
     }
 
 
-    /* BIG TEXT */
-
     .threat-title {
       position: absolute;
 
       top: 5%;
-
       left: 50%;
 
       transform: translateX(-50%);
@@ -263,64 +244,62 @@
       z-index: 20;
 
       margin: 0;
-
       padding: 15px 30px;
 
       background: #ef7eae;
-
       color: white;
 
       font-size: clamp(38px, 6vw, 90px);
-
       font-weight: 900;
 
       text-align: center;
-
       white-space: nowrap;
-
       line-height: 1;
 
       box-shadow: 8px 8px 0 white;
     }
 
 
-    /* ONLY POSSIBLE ANSWER */
+    /*
+       YES BUTTON
+
+       Moved right down to the bottom
+       so it doesn't cover the hamster.
+    */
 
     #yes-threat {
       position: absolute;
 
       left: 50%;
-      bottom: 8%;
+      bottom: 3%;
 
       transform: translateX(-50%);
 
       z-index: 9999;
 
-      border: 8px solid #ef7eae;
+      border: 7px solid #ef7eae;
 
       background: white;
-
       color: #ef7eae;
 
-      padding: 18px 55px;
+      padding: 12px 45px;
 
-      font-size: clamp(35px, 5vw, 75px);
+      font-size: clamp(28px, 4vw, 55px);
 
       font-weight: 900;
 
       cursor: pointer;
 
-      box-shadow: 10px 10px 0 #ef7eae;
+      box-shadow: 8px 8px 0 #ef7eae;
 
-      transition:
-        transform 0.15s ease;
+      transition: transform 0.15s ease;
     }
 
 
     #yes-threat:hover {
       transform:
         translateX(-50%)
-        scale(1.12);
+        scale(1.1);
     }
 
 
@@ -341,7 +320,6 @@
       height: 100%;
 
       display: flex;
-
       justify-content: center;
       align-items: center;
 
@@ -363,13 +341,14 @@
     }
 
 
-    /* CELEBRATION TEXT */
+    /* =========================================
+       HAPPY CAT TEXT
+       ========================================= */
 
     .celebration-title {
       position: absolute;
 
       top: 4%;
-
       left: 50%;
 
       transform: translateX(-50%);
@@ -378,14 +357,13 @@
 
       margin: 0;
 
-      width: 90%;
+      width: 95%;
 
       color: white;
 
       font-size: clamp(36px, 6vw, 90px);
 
       font-weight: 900;
-
       line-height: 0.95;
 
       text-align: center;
@@ -400,6 +378,29 @@
 
     .celebration-title span {
       display: block;
+    }
+
+
+    /*
+       BEER EMOJI
+
+       Separate from the title now,
+       so it won't sit on the cat's head.
+    */
+
+    .celebration-beer {
+      position: absolute;
+
+      right: 8%;
+      bottom: 8%;
+
+      z-index: 1000;
+
+      font-size: clamp(55px, 8vw, 120px);
+
+      transform: rotate(12deg);
+
+      pointer-events: none;
     }
 
 
@@ -432,11 +433,11 @@
 
 
       #yes-threat {
-        bottom: 8%;
+        bottom: 3%;
 
-        font-size: 11vw;
+        font-size: 9vw;
 
-        padding: 12px 35px;
+        padding: 10px 30px;
       }
 
 
@@ -444,6 +445,14 @@
         top: 5%;
 
         font-size: 10vw;
+      }
+
+
+      .celebration-beer {
+        right: 5%;
+        bottom: 5%;
+
+        font-size: 18vw;
       }
 
     }
@@ -478,8 +487,6 @@
       >
 
 
-      <!-- INVISIBLE YES -->
-
       <button
         type="button"
         id="yes-main"
@@ -489,8 +496,6 @@
         YES
       </button>
 
-
-      <!-- INVISIBLE NO -->
 
       <button
         type="button"
@@ -510,8 +515,7 @@
 
 
   <!-- =====================================
-       PAGE 2
-       HAMSTER
+       PAGE 2 — HAMSTER
        ===================================== -->
 
   <section
@@ -537,8 +541,7 @@
       </h1>
 
 
-      <!-- THERE IS DELIBERATELY
-           NO "NO" BUTTON 😂 -->
+      <!-- ONLY OPTION -->
 
       <button
         type="button"
@@ -556,8 +559,7 @@
 
 
   <!-- =====================================
-       PAGE 3
-       HAPPY CAT
+       PAGE 3 — HAPPY CAT
        ===================================== -->
 
   <section
@@ -585,10 +587,17 @@
         </span>
 
         <span>
-          SEE YOU ON THURSDAY!!! 🍻
+          SEE YOU ON THURSDAY!!!
         </span>
 
       </h1>
+
+
+      <!-- Beer moved away from cat -->
+
+      <div class="celebration-beer">
+        🍻
+      </div>
 
 
     </div>
@@ -602,7 +611,7 @@
 
 
     /* =====================================
-       GET EVERYTHING
+       ELEMENTS
        ===================================== */
 
 
@@ -635,7 +644,15 @@
 
 
     /* =====================================
-       CONFETTI COLOURS
+       LOWER HAPPY CAT VOLUME
+       ===================================== */
+
+    happyVideo.volume = 0.35;
+
+
+
+    /* =====================================
+       CONFETTI
        ===================================== */
 
 
@@ -649,11 +666,6 @@
       "#ff69b4"
     ];
 
-
-
-    /* =====================================
-       CREATE ONE CONFETTI PIECE
-       ===================================== */
 
 
     function createConfetti(
@@ -684,11 +696,6 @@
         ];
 
 
-      /*
-        Celebration screen gets
-        slightly bigger confetti.
-      */
-
       const size =
         celebration
           ? Math.random() * 11 + 6
@@ -703,10 +710,6 @@
         size * 1.7 + "px";
 
 
-      /*
-        Random falling speed
-      */
-
       const duration =
         celebration
           ? Math.random() * 2 + 2.5
@@ -716,10 +719,6 @@
       piece.style.animationDuration =
         duration + "s";
 
-
-      /*
-        Random shape
-      */
 
       if (Math.random() > 0.8) {
 
@@ -752,7 +751,7 @@
 
 
     /* =====================================
-       NORMAL PAGE 1 CONFETTI
+       PAGE 1 CONFETTI
        ===================================== */
 
 
@@ -774,11 +773,6 @@
       100
     );
 
-
-
-    /*
-       Confetti immediately on opening
-    */
 
     for (
       let i = 0;
@@ -803,7 +797,7 @@
 
 
     /* =====================================
-       SHOW HAMSTER PAGE
+       HAMSTER SCREEN
        ===================================== */
 
 
@@ -823,24 +817,13 @@
       );
 
 
-      /*
-        Start hamster video.
-
-        Because the person clicked NO,
-        browsers should allow playback.
-      */
-
       hamsterVideo.currentTime = 0;
 
       hamsterVideo.muted = false;
 
+
       hamsterVideo.play().catch(
         function () {
-
-          /*
-            If browser blocks sound,
-            try playing muted instead.
-          */
 
           hamsterVideo.muted = true;
 
@@ -855,7 +838,7 @@
 
 
     /* =====================================
-       SHOW HAPPY CAT
+       CELEBRATION SCREEN
        ===================================== */
 
 
@@ -875,30 +858,23 @@
       );
 
 
-      /*
-        Stop hamster video
-      */
-
       hamsterVideo.pause();
 
-
-      /*
-        Start happy cat FROM THE START
-        WITH SOUND.
-      */
 
       happyVideo.currentTime = 0;
 
       happyVideo.muted = false;
 
 
+      /*
+         35% volume
+      */
+
+      happyVideo.volume = 0.35;
+
+
       happyVideo.play().catch(
         function () {
-
-          /*
-            Browser fallback if it
-            refuses audio playback.
-          */
 
           happyVideo.muted = true;
 
@@ -909,9 +885,7 @@
 
 
 
-      /*
-        MASSIVE INITIAL CONFETTI BURST
-      */
+      /* BIG CONFETTI BURST */
 
       for (
         let i = 0;
@@ -939,8 +913,7 @@
 
 
     /* =====================================
-       HEAVY CONTINUOUS CELEBRATION
-       CONFETTI
+       CONTINUOUS CELEBRATION CONFETTI
        ===================================== */
 
 
@@ -967,7 +940,7 @@
 
 
     /* =====================================
-       PAGE 1 YES
+       BUTTON ROUTES
        ===================================== */
 
 
@@ -981,12 +954,6 @@
     );
 
 
-
-    /* =====================================
-       PAGE 1 NO
-       ===================================== */
-
-
     noMain.addEventListener(
       "click",
       function () {
@@ -995,12 +962,6 @@
 
       }
     );
-
-
-
-    /* =====================================
-       HAMSTER YES
-       ===================================== */
 
 
     yesThreat.addEventListener(
