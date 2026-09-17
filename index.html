@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>important question</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #f4f4f4;
+
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    /* WHOLE INVITATION */
+
+    .invite {
+      position: relative;
+
+      width: min(95vw, 1100px);
+
+      line-height: 0;
+    }
+
+
+    /* YOUR COMPLETE DESIGN */
+
+    .background {
+      width: 100%;
+      height: auto;
+
+      display: block;
+    }
+
+
+    /* BUTTONS */
+
+    button {
+      position: absolute;
+
+      border: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      z-index: 10;
+    }
+
+
+    /* YES BUTTON */
+
+    #yes {
+      left: 6%;
+      top: 66%;
+
+      background: white;
+      color: #ef7eae;
+
+      font-size: clamp(20px, 3.2vw, 42px);
+
+      padding: 16px 20px;
+
+      transition: transform 0.15s ease;
+    }
+
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+
+
+    /* NO BUTTON */
+
+    #no {
+      left: 27%;
+      top: 68%;
+
+      background: #07535b;
+      color: #d8eeee;
+
+      font-size: clamp(16px, 2.2vw, 29px);
+
+      padding: 10px 13px;
+
+      transition: transform 0.15s ease;
+    }
+
+
+    #no:hover {
+      transform: scale(0.95);
+    }
+
+
+    /* PHONE */
+
+    @media (max-width: 600px) {
+
+      .invite {
+        width: 100vw;
+      }
+
+      #yes {
+        font-size: 5vw;
+        padding: 10px 13px;
+      }
+
+      #no {
+        font-size: 3.8vw;
+        padding: 7px 10px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <div class="invite">
+
+    <!-- YOUR COMPLETE DESIGN -->
+    <img
+      src="page1.png"
+      class="background"
+      alt="Pub invitation"
+    >
+
+
+    <!-- CLICKABLE BUTTONS -->
+
+    <button id="yes">
+      YES!!!
+    </button>
+
+    <button id="no">
+      No :(
+    </button>
+
+  </div>
+
+
+
+  <script>
+
+    /* YES */
+
+    document
+      .getElementById("yes")
+      .addEventListener("click", function () {
+
+        alert("YES CLICKED");
+
+      });
+
+
+    /* NO */
+
+    document
+      .getElementById("no")
+      .addEventListener("click", function () {
+
+        alert("wrong answer");
+
+      });
+
+  </script>
+
+
+</body>
+
+</html>
