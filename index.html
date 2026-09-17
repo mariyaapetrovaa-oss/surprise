@@ -13,6 +13,10 @@
 
   <style>
 
+    /* =========================
+       BASIC PAGE
+       ========================= */
+
     * {
       box-sizing: border-box;
     }
@@ -37,9 +41,9 @@
     }
 
 
-    /* ==============================
+    /* =========================
        INVITATION
-       ============================== */
+       ========================= */
 
     .invite {
       position: relative;
@@ -52,9 +56,9 @@
     }
 
 
-    /* ==============================
-       YOUR IMAGE
-       ============================== */
+    /* =========================
+       YOUR PAGE1.PNG
+       ========================= */
 
     .background {
       position: absolute;
@@ -71,69 +75,80 @@
 
       z-index: 1;
 
-      /* Important:
-         image itself cannot steal clicks */
+      /* Image cannot block button clicks */
       pointer-events: none;
     }
 
 
-    /* ==============================
+    /* =========================
        CLICKABLE AREAS
-       ============================== */
+       ========================= */
 
     .click-zone {
       position: absolute;
 
-      z-index: 999;
-
-      border: none;
-      background: transparent;
+      z-index: 9999;
 
       padding: 0;
       margin: 0;
 
+      border: none;
+
       cursor: pointer;
 
-      /* Hide the HTML text */
+      pointer-events: auto;
+
+      /* Hide actual button text */
       color: transparent;
       font-size: 0;
     }
 
 
-    /*
+    /* =========================
        YES CLICK AREA
-
-       Intentionally slightly larger
-       than the visible YES button.
-    */
+       ========================= */
 
     #yes {
-      left: 4%;
-      top: 65%;
+      left: 5%;
+      top: 69%;
 
-      width: 24%;
-      height: 18%;
+      width: 22%;
+      height: 15%;
+
+      /*
+        TEMPORARILY RED
+        so we can see the click area.
+      */
+
+      background:
+        rgba(255, 0, 0, 0.40);
     }
 
 
-    /*
+    /* =========================
        NO CLICK AREA
-
-       Also deliberately generous.
-    */
+       ========================= */
 
     #no {
       left: 27%;
-      top: 67%;
+      top: 71%;
 
       width: 15%;
-      height: 15%;
+      height: 13%;
+
+      /*
+        TEMPORARILY BLUE
+        so we can see the click area.
+      */
+
+      background:
+        rgba(0, 0, 255, 0.40);
     }
 
 
-    /* ==============================
-       CONFETTI
-       ============================== */
+    /* =========================
+       FALLING CONFETTI
+       ========================= */
 
     .confetti-piece {
       position: absolute;
@@ -197,15 +212,21 @@
 
         opacity: 0.8;
       }
+
     }
 
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 600px) {
 
       .invite {
-        width: min(98vw, calc(95vh * 1.5));
+        width: min(
+          98vw,
+          calc(95vh * 1.5)
+        );
       }
 
     }
@@ -221,7 +242,7 @@
   <main class="invite">
 
 
-    <!-- YOUR COMPLETE PAGE 1 DESIGN -->
+    <!-- YOUR COMPLETE DESIGN -->
 
     <img
       src="page1.png"
@@ -230,9 +251,10 @@
     >
 
 
-    <!-- INVISIBLE CLICK ZONES -->
+    <!-- YES CLICK ZONE -->
 
     <button
+      type="button"
       id="yes"
       class="click-zone"
       aria-label="Yes"
@@ -241,7 +263,10 @@
     </button>
 
 
+    <!-- NO CLICK ZONE -->
+
     <button
+      type="button"
       id="no"
       class="click-zone"
       aria-label="No"
@@ -253,12 +278,12 @@
   </main>
 
 
-
   <script>
 
-    /* ==============================
+
+    /* =========================
        CONFETTI
-       ============================== */
+       ========================= */
 
     const invite =
       document.querySelector(".invite");
@@ -294,7 +319,6 @@
       /* RANDOM COLOUR */
 
       piece.style.backgroundColor =
-
         confettiColours[
           Math.floor(
             Math.random() *
@@ -315,7 +339,7 @@
         (size * 1.7) + "px";
 
 
-      /* RANDOM FALL SPEED */
+      /* RANDOM SPEED */
 
       const duration =
         Math.random() * 3 + 3.5;
@@ -324,7 +348,7 @@
         duration + "s";
 
 
-      /* MIX OF ROUND + RECTANGULAR */
+      /* RANDOM SHAPE */
 
       if (Math.random() > 0.8) {
 
@@ -342,6 +366,8 @@
       invite.appendChild(piece);
 
 
+      /* REMOVE AFTER FALLING */
+
       setTimeout(
         function () {
           piece.remove();
@@ -353,67 +379,69 @@
 
 
     /*
-       MORE CONFETTI
-
-       New piece every 120ms.
+       Lots of continuous confetti
     */
 
     setInterval(
       createConfetti,
-      120
+      100
     );
 
 
     /*
-       Give us some confetti immediately
-       instead of waiting for it to build.
+       Initial burst when page opens
     */
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
 
       setTimeout(
         createConfetti,
-        Math.random() * 1000
+        Math.random() * 1200
       );
 
     }
 
 
 
-    /* ==============================
-       YES
-       ============================== */
+    /* =========================
+       YES BUTTON TEST
+       ========================= */
 
-    document
-      .getElementById("yes")
-      .addEventListener(
-        "click",
-        function () {
-
-          alert(
-            "CORRECT ANSWER 🎉"
-          );
-
-        }
-      );
+    const yesButton =
+      document.getElementById("yes");
 
 
-    /* ==============================
-       NO
-       ============================== */
+    yesButton.addEventListener(
+      "click",
+      function () {
 
-    document
-      .getElementById("no")
-      .addEventListener(
-        "click",
-        function () {
+        alert(
+          "CORRECT ANSWER 🎉"
+        );
 
-          alert(
-            "wrong answer."
-          );
+      }
+    );
 
-        }
-      );
+
+
+    /* =========================
+       NO BUTTON TEST
+       ========================= */
+
+    const noButton =
+      document.getElementById("no");
+
+
+    noButton.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "wrong answer."
+        );
+
+      }
+    );
 
 
   </script>
