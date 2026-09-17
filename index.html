@@ -1,32 +1,1124 @@
-#yes-threat {
-  position: absolute;
+<!DOCTYPE html>
+<html lang="en">
 
-  right: 3%;
-  bottom: 8%;
-  left: auto;
+<head>
+  <meta charset="UTF-8">
 
-  transform: none;
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  z-index: 9999;
+  <title>important question</title>
 
-  border: 7px solid #ef7eae;
+  <style>
 
-  background: white;
-  color: #ef7eae;
+    /* =========================================
+       BASIC SETUP
+       ========================================= */
 
-  padding: 12px 45px;
+    * {
+      box-sizing: border-box;
+    }
 
-  font-size: clamp(28px, 4vw, 55px);
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-  font-weight: 900;
+    body {
+      background: #111;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-  cursor: pointer;
 
-  box-shadow: 8px 8px 0 #ef7eae;
+    /* =========================================
+       SCREENS
+       ========================================= */
 
-  transition: transform 0.15s ease;
-}
+    .screen {
+      position: fixed;
+      inset: 0;
 
-#yes-threat:hover {
-  transform: scale(1.1);
-}
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+
+    /* =========================================
+       PAGE 1
+       ========================================= */
+
+    #page1 {
+      background: #111;
+    }
+
+    .invite {
+      position: relative;
+
+      width: min(95vw, calc(92vh * 1.5));
+
+      aspect-ratio: 3 / 2;
+
+      overflow: hidden;
+    }
+
+    .background {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+      z-index: 1;
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================
+       PAGE 1 CLICK AREAS
+       ========================================= */
+
+    .click-zone {
+      position: absolute;
+
+      z-index: 9999;
+
+      padding: 0;
+      margin: 0;
+
+      border: none;
+      background: transparent;
+
+      cursor: pointer;
+
+      color: transparent;
+      font-size: 0;
+    }
+
+
+    /*
+       KEEP THESE EXACTLY AS THEY ARE.
+
+       These are the coordinates we already
+       confirmed work with page1.png.
+    */
+
+    #yes-main {
+      left: 5%;
+      top: 69%;
+
+      width: 22%;
+      height: 15%;
+    }
+
+
+    #no-main {
+      left: 27%;
+      top: 71%;
+
+      width: 15%;
+      height: 13%;
+    }
+
+
+
+    /* =========================================
+       CONFETTI
+       ========================================= */
+
+    .confetti-piece {
+      position: absolute;
+
+      top: -30px;
+
+      z-index: 500;
+
+      pointer-events: none;
+
+      animation:
+        confettiFall linear forwards;
+    }
+
+
+    @keyframes confettiFall {
+
+      0% {
+        transform:
+          translate3d(0, -30px, 0)
+          rotate(0deg);
+
+        opacity: 1;
+      }
+
+      50% {
+        transform:
+          translate3d(20px, 50vh, 0)
+          rotate(360deg);
+
+        opacity: 1;
+      }
+
+      100% {
+        transform:
+          translate3d(-15px, 105vh, 0)
+          rotate(720deg);
+
+        opacity: 0.7;
+      }
+
+    }
+
+
+
+    /* =========================================
+       PAGE 2
+       HAMSTER
+       ========================================= */
+
+    #page2 {
+      background: #000;
+    }
+
+
+    /*
+       This is now a vertical layout.
+
+       Video gets its own area.
+       YES gets its own area.
+
+       Therefore YES CANNOT cover
+       the hamster anymore.
+    */
+
+    .threat-container {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      background: #000;
+
+      overflow: hidden;
+    }
+
+
+    /* =========================================
+       HAMSTER VIDEO AREA
+       ========================================= */
+
+    .threat-video-area {
+      position: relative;
+
+      flex: 1;
+
+      min-height: 0;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+
+      background: #000;
+    }
+
+
+    .threat-video {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+      background: #000;
+    }
+
+
+
+    /* =========================================
+       HAMSTER TITLE
+       ========================================= */
+
+    .threat-title {
+      position: absolute;
+
+      top: 3%;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      z-index: 20;
+
+      margin: 0;
+
+      padding: 12px 28px;
+
+      max-width: 90%;
+
+      background: #ef7eae;
+
+      color: white;
+
+      font-size:
+        clamp(32px, 5vw, 72px);
+
+      font-weight: 900;
+
+      line-height: 1;
+
+      text-align: center;
+
+      white-space: nowrap;
+
+      box-shadow:
+        7px 7px 0 white;
+
+      pointer-events: none;
+    }
+
+
+
+    /* =========================================
+       HAMSTER YES BAR
+
+       COMPLETELY SEPARATE FROM VIDEO
+       ========================================= */
+
+    .threat-controls {
+      position: relative;
+
+      flex: 0 0 auto;
+
+      min-height: 115px;
+
+      padding: 16px;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      background: #ef7eae;
+
+      z-index: 1000;
+    }
+
+
+    #yes-threat {
+      border: none;
+
+      background: white;
+
+      color: #ef7eae;
+
+      padding: 12px 55px;
+
+      font-size:
+        clamp(30px, 4vw, 54px);
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      box-shadow:
+        7px 7px 0 #111;
+
+      transition:
+        transform 0.15s ease;
+    }
+
+
+    #yes-threat:hover {
+      transform: scale(1.08);
+    }
+
+
+
+    /* =========================================
+       PAGE 3
+       HAPPY CAT
+       ========================================= */
+
+    #page3 {
+      background: #ef7eae;
+    }
+
+
+    .celebration-container {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+
+      background: #ef7eae;
+    }
+
+
+    .happy-video {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+      background: #ef7eae;
+
+      z-index: 1;
+    }
+
+
+
+    /* =========================================
+       CELEBRATION TEXT
+       ========================================= */
+
+    .celebration-title {
+      position: absolute;
+
+      top: 3%;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      z-index: 1000;
+
+      margin: 0;
+
+      width: 96%;
+
+      color: white;
+
+      font-weight: 900;
+
+      line-height: 0.95;
+
+      text-align: center;
+
+      pointer-events: none;
+
+      text-shadow:
+        4px 4px 0 #ef7eae,
+        -2px -2px 0 #ef7eae,
+        2px -2px 0 #ef7eae,
+        -2px 2px 0 #ef7eae;
+    }
+
+
+    /*
+       YAYYYYY can stay huge.
+    */
+
+    .yay-line {
+      display: block;
+
+      font-size:
+        clamp(48px, 7vw, 105px);
+    }
+
+
+    /*
+       Smaller second line so the entire
+       sentence fits on the screen.
+    */
+
+    .thursday-line {
+      display: block;
+
+      margin-top: 6px;
+
+      font-size:
+        clamp(30px, 4.7vw, 72px);
+
+      white-space: nowrap;
+    }
+
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .invite {
+        width:
+          min(98vw, calc(95vh * 1.5));
+      }
+
+
+      .threat-title {
+        top: 3%;
+
+        width: 88%;
+
+        padding: 10px 14px;
+
+        white-space: normal;
+
+        font-size: 9vw;
+      }
+
+
+      .threat-controls {
+        min-height: 90px;
+
+        padding: 12px;
+      }
+
+
+      #yes-threat {
+        padding: 10px 35px;
+
+        font-size: 9vw;
+      }
+
+
+      .celebration-title {
+        top: 4%;
+      }
+
+
+      .yay-line {
+        font-size: 12vw;
+      }
+
+
+      .thursday-line {
+        font-size: 6.5vw;
+
+        white-space: normal;
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- =====================================
+       PAGE 1
+       ===================================== -->
+
+  <section
+    id="page1"
+    class="screen active"
+  >
+
+    <div class="invite">
+
+      <img
+        src="page1.png"
+        class="background"
+        alt="Pub invitation"
+      >
+
+
+      <button
+        type="button"
+        id="yes-main"
+        class="click-zone"
+        aria-label="Yes"
+      >
+        YES
+      </button>
+
+
+      <button
+        type="button"
+        id="no-main"
+        class="click-zone"
+        aria-label="No"
+      >
+        NO
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================
+       PAGE 2
+       HAMSTER
+       ===================================== -->
+
+  <section
+    id="page2"
+    class="screen"
+  >
+
+    <div class="threat-container">
+
+
+      <!-- VIDEO HAS ITS OWN AREA -->
+
+      <div class="threat-video-area">
+
+        <video
+          id="hamster-video"
+          class="threat-video"
+          src="hamster.mov"
+          playsinline
+          loop
+          preload="metadata"
+        ></video>
+
+
+        <h1 class="threat-title">
+          PUB ON THURSDAY?
+        </h1>
+
+      </div>
+
+
+      <!--
+        YES IS OUTSIDE THE VIDEO AREA.
+
+        It cannot cover the hamster.
+      -->
+
+      <div class="threat-controls">
+
+        <button
+          type="button"
+          id="yes-threat"
+        >
+          YES!!!
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================
+       PAGE 3
+       HAPPY CAT
+       ===================================== -->
+
+  <section
+    id="page3"
+    class="screen"
+  >
+
+    <div class="celebration-container">
+
+
+      <video
+        id="happy-video"
+        class="happy-video"
+        src="happycat.mov"
+        playsinline
+        loop
+        preload="metadata"
+      ></video>
+
+
+      <h1 class="celebration-title">
+
+        <span class="yay-line">
+          YAYYYYY
+        </span>
+
+        <span class="thursday-line">
+          SEE YOU ON THURSDAY!!!
+        </span>
+
+      </h1>
+
+
+      <!--
+        NO HTML BEER EMOJI.
+
+        Nothing here can cover
+        the cat's head.
+      -->
+
+
+    </div>
+
+  </section>
+
+
+
+  <script>
+
+
+    /* =====================================
+       ELEMENTS
+       ===================================== */
+
+
+    const page1 =
+      document.getElementById("page1");
+
+
+    const page2 =
+      document.getElementById("page2");
+
+
+    const page3 =
+      document.getElementById("page3");
+
+
+    const yesMain =
+      document.getElementById("yes-main");
+
+
+    const noMain =
+      document.getElementById("no-main");
+
+
+    const yesThreat =
+      document.getElementById("yes-threat");
+
+
+    const hamsterVideo =
+      document.getElementById("hamster-video");
+
+
+    const happyVideo =
+      document.getElementById("happy-video");
+
+
+
+    /* =====================================
+       VIDEO VOLUME
+
+       18% FOR BOTH
+       ===================================== */
+
+
+    hamsterVideo.volume = 0.18;
+
+    happyVideo.volume = 0.18;
+
+
+
+    /* =====================================
+       CONFETTI
+       ===================================== */
+
+
+    const confettiColours = [
+      "#ff1493",
+      "#ff4500",
+      "#ffd700",
+      "#00c853",
+      "#00bfff",
+      "#8a2be2",
+      "#ff69b4"
+    ];
+
+
+
+    function createConfetti(
+      container,
+      celebration = false
+    ) {
+
+
+      const piece =
+        document.createElement("div");
+
+
+      piece.className =
+        "confetti-piece";
+
+
+      piece.style.left =
+        Math.random() * 100 + "%";
+
+
+      piece.style.backgroundColor =
+        confettiColours[
+          Math.floor(
+            Math.random() *
+            confettiColours.length
+          )
+        ];
+
+
+      const size =
+        celebration
+          ? Math.random() * 8 + 6
+          : Math.random() * 6 + 5;
+
+
+      piece.style.width =
+        size + "px";
+
+
+      piece.style.height =
+        (size * 1.6) + "px";
+
+
+      const duration =
+        celebration
+          ? Math.random() * 1.5 + 3
+          : Math.random() * 2 + 4;
+
+
+      piece.style.animationDuration =
+        duration + "s";
+
+
+      if (Math.random() > 0.8) {
+
+        piece.style.borderRadius =
+          "50%";
+
+      } else {
+
+        piece.style.borderRadius =
+          "2px";
+
+      }
+
+
+      container.appendChild(piece);
+
+
+      /*
+        Remove shortly after its
+        animation finishes.
+      */
+
+      setTimeout(
+        function () {
+
+          piece.remove();
+
+        },
+        (duration * 1000) + 200
+      );
+
+
+    }
+
+
+
+    /* =====================================
+       PAGE 1 CONFETTI
+
+       Around 6 pieces per second.
+       ===================================== */
+
+
+    const page1Confetti =
+      setInterval(
+        function () {
+
+          if (
+            page1.classList.contains(
+              "active"
+            )
+          ) {
+
+            createConfetti(
+              page1,
+              false
+            );
+
+          }
+
+        },
+        165
+      );
+
+
+
+    /*
+       Small opening sprinkle,
+       rather than 40 pieces.
+    */
+
+    for (
+      let i = 0;
+      i < 15;
+      i++
+    ) {
+
+      setTimeout(
+        function () {
+
+          if (
+            page1.classList.contains(
+              "active"
+            )
+          ) {
+
+            createConfetti(
+              page1,
+              false
+            );
+
+          }
+
+        },
+        Math.random() * 1200
+      );
+
+    }
+
+
+
+    /* =====================================
+       HAMSTER SCREEN
+       ===================================== */
+
+
+    function showHamster() {
+
+
+      page1.classList.remove(
+        "active"
+      );
+
+
+      page3.classList.remove(
+        "active"
+      );
+
+
+      page2.classList.add(
+        "active"
+      );
+
+
+      /*
+        Stop happy video if necessary.
+      */
+
+      happyVideo.pause();
+
+
+      /*
+        Start hamster from beginning.
+      */
+
+      hamsterVideo.currentTime = 0;
+
+      hamsterVideo.muted = false;
+
+      hamsterVideo.volume = 0.18;
+
+
+      hamsterVideo.play().catch(
+        function () {
+
+          /*
+            Fallback if browser
+            refuses audio.
+          */
+
+          hamsterVideo.muted = true;
+
+          hamsterVideo.play();
+
+        }
+      );
+
+
+    }
+
+
+
+    /* =====================================
+       CELEBRATION SCREEN
+       ===================================== */
+
+
+    function showCelebration() {
+
+
+      page1.classList.remove(
+        "active"
+      );
+
+
+      page2.classList.remove(
+        "active"
+      );
+
+
+      page3.classList.add(
+        "active"
+      );
+
+
+      /*
+        Stop hamster.
+      */
+
+      hamsterVideo.pause();
+
+
+      /*
+        Happy cat from beginning.
+      */
+
+      happyVideo.currentTime = 0;
+
+      happyVideo.muted = false;
+
+      happyVideo.volume = 0.18;
+
+
+      happyVideo.play().catch(
+        function () {
+
+          happyVideo.muted = true;
+
+          happyVideo.play();
+
+        }
+      );
+
+
+      /*
+        SMALL celebration burst.
+
+        Previously this was 120 pieces.
+        Now only 25.
+      */
+
+      for (
+        let i = 0;
+        i < 25;
+        i++
+      ) {
+
+        setTimeout(
+          function () {
+
+            if (
+              page3.classList.contains(
+                "active"
+              )
+            ) {
+
+              createConfetti(
+                page3,
+                true
+              );
+
+            }
+
+          },
+          Math.random() * 800
+        );
+
+      }
+
+
+    }
+
+
+
+    /* =====================================
+       CELEBRATION CONFETTI
+
+       Around 8 pieces per second
+       instead of ~18.
+       ===================================== */
+
+
+    const celebrationConfetti =
+      setInterval(
+        function () {
+
+          if (
+            page3.classList.contains(
+              "active"
+            )
+          ) {
+
+            createConfetti(
+              page3,
+              true
+            );
+
+          }
+
+        },
+        125
+      );
+
+
+
+    /* =====================================
+       BUTTON ROUTES
+       ===================================== */
+
+
+    yesMain.addEventListener(
+      "click",
+      showCelebration
+    );
+
+
+    noMain.addEventListener(
+      "click",
+      showHamster
+    );
+
+
+    yesThreat.addEventListener(
+      "click",
+      showCelebration
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>
