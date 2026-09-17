@@ -2,141 +2,272 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>important question</title>
 
+
   <style>
+
+    /* ==============================
+       BASIC PAGE SETUP
+       ============================== */
 
     * {
       box-sizing: border-box;
     }
 
+
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    body {
 
       display: flex;
       justify-content: center;
       align-items: center;
 
-      background: #f4f4f4;
+      overflow: hidden;
+
+      background: #111;
 
       font-family: Arial, Helvetica, sans-serif;
+
     }
 
 
-    /* WHOLE INVITATION */
+
+    /* ==============================
+       INVITATION CONTAINER
+       ============================== */
 
     .invite {
+
       position: relative;
 
-      width: min(95vw, 1100px);
+      /*
+        Your image is approximately 3:2.
 
-      line-height: 0;
+        These two calculations make sure
+        the invitation fits BOTH the width
+        and height of the visitor's screen.
+      */
+
+      width: min(95vw, calc(92vh * 1.5));
+
+      aspect-ratio: 3 / 2;
+
+      overflow: hidden;
+
     }
 
 
-    /* YOUR COMPLETE DESIGN */
+
+    /* ==============================
+       YOUR COMPLETE PAGE 1 IMAGE
+       ============================== */
 
     .background {
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
       width: 100%;
-      height: auto;
+      height: 100%;
+
+      object-fit: contain;
 
       display: block;
+
+      z-index: 1;
+
     }
 
 
-    /* BUTTONS */
 
-    button {
+    /* ==============================
+       INVISIBLE CLICKABLE BUTTONS
+
+       These sit over the buttons that
+       already exist inside page1.png.
+       ============================== */
+
+    .click-zone {
+
       position: absolute;
 
+      z-index: 20;
+
+      background: transparent;
+
       border: none;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
+
+      padding: 0;
+
+      font-size: 0;
 
       cursor: pointer;
 
-      z-index: 10;
     }
 
 
-    /* YES BUTTON */
+
+    /* YES!!! */
 
     #yes {
-      left: 6%;
-      top: 66%;
 
-      background: white;
-      color: #ef7eae;
+      left: 5.5%;
+      top: 81%;
 
-      font-size: clamp(20px, 3.2vw, 42px);
+      width: 20%;
+      height: 13%;
 
-      padding: 16px 20px;
-
-      transition: transform 0.15s ease;
     }
 
 
-    #yes:hover {
-      transform: scale(1.1);
-    }
 
-
-    /* NO BUTTON */
+    /* No :( */
 
     #no {
+
       left: 27%;
-      top: 68%;
+      top: 83%;
 
-      background: #07535b;
-      color: #d8eeee;
+      width: 13%;
+      height: 11%;
 
-      font-size: clamp(16px, 2.2vw, 29px);
-
-      padding: 10px 13px;
-
-      transition: transform 0.15s ease;
     }
 
 
-    #no:hover {
-      transform: scale(0.95);
+
+    /* ==============================
+       FALLING CONFETTI
+       ============================== */
+
+    .confetti-piece {
+
+      position: absolute;
+
+      top: -5%;
+
+      z-index: 10;
+
+      pointer-events: none;
+
+      animation-name: confettiFall;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+
     }
 
 
-    /* PHONE */
+
+    @keyframes confettiFall {
+
+      0% {
+
+        transform:
+          translateY(-20px)
+          translateX(0)
+          rotate(0deg);
+
+        opacity: 1;
+
+      }
+
+
+      25% {
+
+        transform:
+          translateY(25vh)
+          translateX(15px)
+          rotate(180deg);
+
+      }
+
+
+      50% {
+
+        transform:
+          translateY(50vh)
+          translateX(-10px)
+          rotate(360deg);
+
+      }
+
+
+      75% {
+
+        transform:
+          translateY(75vh)
+          translateX(12px)
+          rotate(540deg);
+
+      }
+
+
+      100% {
+
+        transform:
+          translateY(110vh)
+          translateX(-5px)
+          rotate(720deg);
+
+        opacity: 0.7;
+
+      }
+
+    }
+
+
+
+    /* ==============================
+       SMALL SCREEN ADJUSTMENTS
+       ============================== */
 
     @media (max-width: 600px) {
 
       .invite {
-        width: 100vw;
-      }
 
-      #yes {
-        font-size: 5vw;
-        padding: 10px 13px;
-      }
+        width: min(98vw, calc(95vh * 1.5));
 
-      #no {
-        font-size: 3.8vw;
-        padding: 7px 10px;
       }
 
     }
 
+
+
   </style>
+
 </head>
+
 
 
 <body>
 
 
-  <div class="invite">
+  <!-- ==============================
+       INVITATION
+       ============================== -->
+
+  <main class="invite">
+
 
     <!-- YOUR COMPLETE DESIGN -->
+
     <img
       src="page1.png"
       class="background"
@@ -144,42 +275,250 @@
     >
 
 
-    <!-- CLICKABLE BUTTONS -->
 
-    <button id="yes">
-      YES!!!
+    <!--
+      Invisible YES button.
+
+      The visible YES!!! is already
+      contained in page1.png.
+    -->
+
+    <button
+      id="yes"
+      class="click-zone"
+      aria-label="Yes"
+    >
+      YES
     </button>
 
-    <button id="no">
-      No :(
+
+
+    <!--
+      Invisible NO button.
+
+      The visible No :( is already
+      contained in page1.png.
+    -->
+
+    <button
+      id="no"
+      class="click-zone"
+      aria-label="No"
+    >
+      NO
     </button>
 
-  </div>
+
+  </main>
 
 
 
   <script>
 
-    /* YES */
+
+    /* ==============================
+       CONFETTI
+       ============================== */
+
+
+    const invite =
+      document.querySelector(".invite");
+
+
+    const confettiColours = [
+
+      "#ff1493",  // pink
+      "#ff4500",  // orange
+      "#ffd700",  // yellow
+      "#00c853",  // green
+      "#00bfff",  // blue
+      "#8a2be2",  // purple
+      "#ff69b4"   // light pink
+
+    ];
+
+
+
+    function createConfetti() {
+
+
+      const piece =
+        document.createElement("div");
+
+
+      piece.classList.add(
+        "confetti-piece"
+      );
+
+
+
+      /* RANDOM POSITION */
+
+      piece.style.left =
+        Math.random() * 100 + "%";
+
+
+
+      /* RANDOM COLOUR */
+
+      piece.style.backgroundColor =
+
+        confettiColours[
+
+          Math.floor(
+            Math.random() *
+            confettiColours.length
+          )
+
+        ];
+
+
+
+      /* RANDOM SIZE */
+
+      const size =
+        Math.random() * 6 + 5;
+
+
+      piece.style.width =
+        size + "px";
+
+
+      piece.style.height =
+        size * 1.7 + "px";
+
+
+
+      /* RANDOM FALLING SPEED */
+
+      const duration =
+        Math.random() * 3 + 4;
+
+
+      piece.style.animationDuration =
+        duration + "s";
+
+
+
+      /* RANDOM SHAPE */
+
+      if (Math.random() > 0.75) {
+
+        piece.style.borderRadius =
+          "50%";
+
+      }
+
+      else {
+
+        piece.style.borderRadius =
+          "2px";
+
+      }
+
+
+
+      /* RANDOM STARTING ROTATION */
+
+      piece.style.rotate =
+        Math.random() * 180 + "deg";
+
+
+
+      invite.appendChild(piece);
+
+
+
+      /* CLEAN UP AFTER IT FALLS */
+
+      setTimeout(
+
+        function () {
+
+          piece.remove();
+
+        },
+
+        8000
+
+      );
+
+
+    }
+
+
+
+    /*
+      Gentle continuous confetti.
+
+      One new piece approximately
+      every 350 milliseconds.
+    */
+
+    setInterval(
+      createConfetti,
+      350
+    );
+
+
+
+
+
+    /* ==============================
+       YES BUTTON
+       ============================== */
+
 
     document
       .getElementById("yes")
-      .addEventListener("click", function () {
+      .addEventListener(
+        "click",
+        function () {
 
-        alert("YES CLICKED");
+          /*
+            TEMPORARY.
 
-      });
+            Next we'll replace this
+            with the happy cat screen.
+          */
+
+          alert(
+            "CORRECT ANSWER 🎉"
+          );
+
+        }
+      );
 
 
-    /* NO */
+
+
+
+    /* ==============================
+       NO BUTTON
+       ============================== */
+
 
     document
       .getElementById("no")
-      .addEventListener("click", function () {
+      .addEventListener(
+        "click",
+        function () {
 
-        alert("wrong answer");
+          /*
+            TEMPORARY.
 
-      });
+            Next we'll replace this
+            with the threatening
+            hamster screen.
+          */
+
+          alert(
+            "wrong answer."
+          );
+
+        }
+      );
+
 
   </script>
 
